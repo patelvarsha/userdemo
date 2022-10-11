@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-        <BrowserRouter  basename="/react/">
+      <h1>Hello</h1>
+        {/* <BrowserRouter  basename="/react">
       <Routes>
       
         <Route path="/" element={<StudentForm />} />
@@ -15,7 +16,7 @@ function App() {
         <Route path='/studentedit/:id' element={<StudentEditPage />} />
 
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
     </div>
   );
 }

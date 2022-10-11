@@ -1,20 +1,23 @@
+import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ListUser() {
+    const id = localStorage.getItem('StudId')
     const navigate = useNavigate();
     const [inputs, setInputs] = useState([]);
-    const { id } = useParams();
+    // const { id } = useParams();
 
     useEffect(() => {
-        getUser();
-    });
+         getUser();
+    },[]);
 
     const getUser = () => {
-        axios.get(`https://phygitalitclinic.com/react/StudentDb/studData.php/${id}`).then(function (response) {
-            console.log(response.data);
-            setInputs(response.data);
+        axios.get(`https://phygitalitclinic.com/react/StudentDb/studData.php/`).then(function (response)
+         {
+            // console.log(response.data[`${id}`]);
+            setInputs(response.data[`${id}`]);
         });
     }
     const handleChange = (event) => {
@@ -27,7 +30,7 @@ export default function ListUser() {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.put(`https://phygitalitclinic.com/react/StudentDb/studData.php/${id}`, inputs).then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             navigate('/studentlist');
         });
 
@@ -40,26 +43,26 @@ export default function ListUser() {
                     <tbody>
                         <tr>
                             <th>
-                                <label>Name: </label>
+                                <label>Name:</label>
                             </th>
                             <td>
-                                <input value={inputs.name} type="text" name="name" onChange={handleChange} />
+                                <input value={inputs.name || ''} type="text" name="name" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                <label>Gender: </label>
+                                <label>Gender:</label>
                             </th>
                             <td>
-                                <input value={inputs.gender} type="text" name="gender" onChange={handleChange} />
+                                <input value={inputs.gender || ''} type="text" name="gender" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>
                             <th>
-                                <label>Class: </label>
+                                <label>Class:</label>
                             </th>
                             <td>
-                                <input value={inputs.class} type="text" name="class" onChange={handleChange} />
+                                <input value={inputs.class || ''} type="text" name="class" onChange={handleChange} />
                             </td>
                         </tr>
                         <tr>

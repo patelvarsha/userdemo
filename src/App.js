@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
-        <BrowserRouter  basename="/react">
+        <BrowserRouter  basename="/userdemo">
       <Routes>
       
         <Route path="/" element={<StudentForm />} />
